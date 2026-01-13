@@ -11,4 +11,6 @@ module com.haris.enterlinked {
 
     opens com.haris.enterlinked to javafx.fxml;
     exports com.haris.enterlinked;
+    exports com.haris.enterlinked.controller;
+    opens com.haris.enterlinked.controller to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.haris.enterlinked;
+package com.haris.enterlinked.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
