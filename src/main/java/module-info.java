@@ -1,4 +1,4 @@
-module com.example.enterlinked {
+module com.haris.enterlinked {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -9,6 +9,6 @@ module com.example.enterlinked {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.enterlinked to javafx.fxml;
-    exports com.example.enterlinked;
+    opens com.haris.enterlinked to javafx.fxml;
+    exports com.haris.enterlinked;
 }
