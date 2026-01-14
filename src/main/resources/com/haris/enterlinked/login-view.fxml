@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="635.0" style="-fx-background-color: #121212;">
+         <children>
+            <StackPane layoutX="156.0" layoutY="22.0">
+               <children>
+                  <Pane prefHeight="398.0" prefWidth="324.0" style="-fx-background-color: #3b0585;-fx-background-radius: 16;">
+                     <children>
+                        <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" fitHeight="82.0" fitWidth="85.0" layoutX="121.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@enterlinked-logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="130.0" layoutY="107.0" prefHeight="36.0" prefWidth="64.0" text="Login" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="19.0" layoutY="155.0" text="Username" textFill="WHITE">
+                           <font>
+                              <Font name="Yu Gothic Medium" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="227.0" text="Password" textFill="WHITE">
+                           <font>
+                              <Font name="Yu Gothic Medium" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tf_username" layoutX="34.0" layoutY="180.0" prefHeight="25.0" prefWidth="179.0" />
+                        <TextField fx:id="tf_password" layoutX="34.0" layoutY="262.0" prefHeight="25.0" prefWidth="179.0" />
+                        <Button fx:id="bt_login" layoutX="108.0" layoutY="361.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="131.0" text="Login">
+                           <font>
+                              <Font name="Yu Gothic Medium" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bt_register" layoutX="140.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Register" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </children>
+      </Pane>
    </children>
-</HBox>
+</StackPane>
