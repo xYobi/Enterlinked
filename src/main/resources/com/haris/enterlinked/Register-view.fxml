@@ -7,16 +7,16 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="1070.0" prefWidth="1920.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.RegisterController">
+<StackPane prefHeight="1060.0" prefWidth="1900.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.RegisterController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #3b0585;-fx-background-radius: 16;">
          <children>
-            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" fitHeight="250.0" fitWidth="200.0" layoutX="167.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" fitHeight="250.0" fitWidth="200.0" layoutX="187.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@enterlinked-logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="198.0" layoutY="236.0" prefHeight="51.0" prefWidth="138.0" text="Register" textFill="WHITE">
+            <Label layoutX="231.0" layoutY="228.0" prefHeight="51.0" prefWidth="138.0" text="Register" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>
