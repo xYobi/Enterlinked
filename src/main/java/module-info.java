@@ -8,6 +8,7 @@ module com.haris.enterlinked {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.haris.enterlinked to javafx.fxml;
     exports com.haris.enterlinked;

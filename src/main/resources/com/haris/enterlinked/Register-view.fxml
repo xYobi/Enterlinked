@@ -1,57 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="1070.0" prefWidth="1920.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.RegisterController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="635.0" style="-fx-background-color: #121212;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #3b0585;-fx-background-radius: 16;">
          <children>
-            <StackPane layoutX="156.0" layoutY="22.0">
-               <children>
-                  <Pane prefHeight="444.0" prefWidth="324.0" style="-fx-background-color: #3b0585;-fx-background-radius: 16;">
-                     <children>
-                        <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" fitHeight="82.0" fitWidth="85.0" layoutX="121.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@enterlinked-logo.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="126.0" layoutY="105.0" prefHeight="36.0" prefWidth="96.0" text="Register" textFill="WHITE">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="16.0" layoutY="213.0" text="Username" textFill="WHITE">
-                           <font>
-                              <Font name="Yu Gothic Medium" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="17.0" layoutY="293.0" text="Password" textFill="WHITE">
-                           <font>
-                              <Font name="Yu Gothic Medium" size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tf_username" layoutX="34.0" layoutY="238.0" prefHeight="25.0" prefWidth="190.0" />
-                        <TextField fx:id="tf_password" layoutX="34.0" layoutY="319.0" prefHeight="25.0" prefWidth="190.0" />
-                        <Button fx:id="bt_login" layoutX="21.0" layoutY="385.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="131.0" text="Register">
-                           <font>
-                              <Font name="Yu Gothic Medium" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="bt_register" layoutX="174.0" layoutY="384.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Back to Login Page" />
-                        <Label layoutX="21.0" layoutY="141.0" text="Name" textFill="WHITE">
-                           <font>
-                              <Font name="Yu Gothic Medium" size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="34.0" layoutY="169.0" />
-                     </children>
-                  </Pane>
-               </children>
-            </StackPane>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" fitHeight="250.0" fitWidth="200.0" layoutX="167.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@enterlinked-logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="198.0" layoutY="236.0" prefHeight="51.0" prefWidth="138.0" text="Register" textFill="WHITE">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="305.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font name="Yu Gothic Medium" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="467.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font name="Yu Gothic Medium" size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_username" layoutX="87.0" layoutY="360.0" prefHeight="40.0" prefWidth="400.0" />
+            <TextField fx:id="tf_password" layoutX="87.0" layoutY="518.0" prefHeight="40.0" prefWidth="400.0" />
+            <Button fx:id="bt_register" layoutX="218.0" layoutY="664.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Register">
+               <font>
+                  <Font name="Yu Gothic Medium" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="bt_backtologin" layoutX="193.0" layoutY="729.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Back to Login Page" />
          </children>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect>
       </Pane>
    </children>
 </StackPane>
