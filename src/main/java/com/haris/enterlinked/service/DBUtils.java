@@ -54,7 +54,7 @@ public class DBUtils {
             if(resultSet.isBeforeFirst()){
                 System.out.println("User Already Exists");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert   .setContentText("You cannot use this username");
+                alert   .setContentText("This username is currently in use");
                 alert.show();
             }
             else {
@@ -110,7 +110,7 @@ public class DBUtils {
             resultSet = preparedStatement.executeQuery();
 
             if(!resultSet.isBeforeFirst()){
-                System.out.println("User not found in databse");
+                System.out.println("User not found in database");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Provided Credentials are incorrect");
                 alert.show();
@@ -120,9 +120,9 @@ public class DBUtils {
                     if(retrievedPassword.equals(password)){
                         changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
                     }else {
-                        System.out.println("Password is incorrect");
+                        System.out.println("Provided Credentials are incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Password is incorrect");
+                        alert.setContentText("Provided Credentials are incorrect");
                         alert.show();
                     }
                 }
