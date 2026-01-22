@@ -1,5 +1,6 @@
 package com.haris.enterlinked.controller;
 
+import com.haris.enterlinked.service.ContentService;
 import com.haris.enterlinked.service.DBUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +18,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     private Label label_welcome;
+    private ContentService contentService = new ContentService();
 
 
     @Override

@@ -2,15 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.HomePageController">
    <children>
-      <Button fx:id="bt_logout" layoutX="256.0" layoutY="200.0" mnemonicParsing="false" text="Back to Login" />
-      <Label fx:id="label_welcome" layoutX="127.0" layoutY="89.0" prefHeight="45.0" prefWidth="346.0" text="Welcome to Enterlinked">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <Button fx:id="bt_logout" layoutX="256.0" layoutY="200.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="Back to Login" />
    </children>
 </Pane>
