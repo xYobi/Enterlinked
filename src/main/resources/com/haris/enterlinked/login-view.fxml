@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane fx:controller="com.haris.enterlinked.controller.LoginController" prefHeight="1060.0" prefWidth="1900.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="1060.0" prefWidth="1900.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.LoginController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #3b0585;-fx-background-radius: 16;">
          <children>
