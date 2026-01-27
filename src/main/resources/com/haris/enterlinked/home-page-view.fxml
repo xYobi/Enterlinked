@@ -9,13 +9,19 @@
       <Button fx:id="bt_logout" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="Back to Login" />
    </center>
    <left>
-      <VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1060.0" prefWidth="260.0" style="-fx-background-color: #3b0585;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="963.0" prefWidth="260.0" style="-fx-background-color: #3b0585;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="158.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@enterlinked-logo.png" />
                </image></ImageView>
+            <Button mnemonicParsing="false" text="Home" />
+            <Button mnemonicParsing="false" text="Disocvery" />
+            <Button mnemonicParsing="false" text="Library" />
          </children>
       </VBox>
    </left>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00FFFF;" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
