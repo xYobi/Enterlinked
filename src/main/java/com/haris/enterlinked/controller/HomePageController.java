@@ -34,7 +34,7 @@ public class HomePageController implements Initializable {
 
     }
     public void setUserInformation(String username){
-        label_welcome.setText("Welcome "+username+"!");
+
 
     }
 

@@ -4,24 +4,26 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1060.0" prefWidth="1900.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.HomePageController">
-   <center>
-      <Button fx:id="bt_logout" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="Back to Login" />
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to top,#242323,#0e0f0f);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.HomePageController">
    <left>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="963.0" prefWidth="260.0" style="-fx-background-color: #3b0585;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1180.0" prefWidth="260.0" style="-fx-background-color: #3b0585;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="158.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@enterlinked-logo.png" />
                </image></ImageView>
             <Button mnemonicParsing="false" text="Home" />
-            <Button mnemonicParsing="false" text="Disocvery" />
+            <Button mnemonicParsing="false" text="Discovery" />
             <Button mnemonicParsing="false" text="Library" />
+            <Button fx:id="bt_logout" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" text="Logout" />
          </children>
       </VBox>
    </left>
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00FFFF;" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1392.0" style="-fx-background-color: #00FFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField prefHeight="50.0" prefWidth="800.0" promptText="Type to Search" style="-fx-background-radius: 16;" />
+            <Button mnemonicParsing="false" text="Profile" />
+         </children></HBox>
    </top>
 </BorderPane>

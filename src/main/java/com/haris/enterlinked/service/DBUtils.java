@@ -23,6 +23,7 @@ public class DBUtils {
                 root=loader.load();
                 HomePageController homePageController = loader.getController();
                 homePageController.setUserInformation(username);
+
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -37,6 +38,7 @@ public class DBUtils {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle(title);
         stage.setScene(new Scene(root));
+        stage.setMaximized(true);
         stage.show();
     }
     public static void registerUser(ActionEvent event, String username, String password){

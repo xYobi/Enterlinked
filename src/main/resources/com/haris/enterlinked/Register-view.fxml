@@ -7,9 +7,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="1060.0" prefWidth="1900.0" style="-fx-background-color: #0e0f0f;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.RegisterController">
+<StackPane style="-fx-background-color: linear-gradient(to top,#242323,#0e0f0f);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.RegisterController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: #3b0585;-fx-background-radius: 16;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to  bottom,#000000, #3b0585);-fx-background-radius: 16;">
          <children>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" fitHeight="250.0" fitWidth="200.0" layoutX="187.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -19,6 +19,7 @@ public class EnterLinkedApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(EnterLinkedApp.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("EnterLinked");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
