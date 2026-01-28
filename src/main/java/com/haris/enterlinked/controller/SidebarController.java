@@ -1,6 +1,7 @@
 package com.haris.enterlinked.controller;
 
 import com.haris.enterlinked.service.DBUtils;
+import com.haris.enterlinked.service.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,11 +19,11 @@ public class SidebarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         bt_home.setOnAction(e ->
-                DBUtils.changeScene(e, "/com/haris/enterlinked/home-page-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/home-page-view.fxml", "EnterLinked", null)
         );
 
         bt_discovery.setOnAction(e ->
-                DBUtils.changeScene(e, "/com/haris/enterlinked/discovery-page-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/discovery-page-view.fxml", "EnterLinked", null)
         );
 
 //        bt_library.setOnAction(e ->
@@ -30,7 +31,7 @@ public class SidebarController implements Initializable {
    //     );
 
         bt_logout.setOnAction(e ->
-                DBUtils.changeScene(e, "/com/haris/enterlinked/login-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/login-view.fxml", "EnterLinked", null)
         );
     }
 }

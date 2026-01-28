@@ -14,33 +14,7 @@ import java.io.IOException;
 import java.sql.*;
 
 public class DBUtils {
-    public static void changeScene(ActionEvent event, String fxmlFile,String title,String username){
-        Parent root = null;
 
-        if(username != null){
-            try{
-                FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
-                root=loader.load();
-                HomePageController homePageController = loader.getController();
-                homePageController.setUserInformation(username);
-
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }else{
-            try{
-                root=FXMLLoader.load(DBUtils.class.getResource(fxmlFile));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root));
-        stage.setMaximized(true);
-        stage.show();
-    }
     public static void registerUser(ActionEvent event, String username, String password){
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -66,7 +40,7 @@ public class DBUtils {
                 psInsert.executeUpdate();
 
 
-                changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
+                SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -120,7 +94,7 @@ public class DBUtils {
                 while (resultSet.next()){
                     String retrievedPassword = resultSet.getString("password");
                     if(retrievedPassword.equals(password)){
-                        changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
+                        SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
                     }else {
                         System.out.println("Provided Credentials are incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);

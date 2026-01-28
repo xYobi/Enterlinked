@@ -12,7 +12,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ff0000;">
                <children>
-                  <TextField prefHeight="57.0" prefWidth="628.0" promptText="Type to Search" style="-fx-background-radius: 20;">
+                  <TextField fx:id="searchField" prefHeight="57.0" prefWidth="628.0" promptText="Type to Search" style="-fx-background-radius: 20;">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

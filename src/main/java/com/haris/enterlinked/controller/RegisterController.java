@@ -1,6 +1,7 @@
 package com.haris.enterlinked.controller;
 
 import com.haris.enterlinked.service.DBUtils;
+import com.haris.enterlinked.service.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ public class RegisterController implements Initializable {
         bt_backtologin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "/com/haris/enterlinked/login-view.fxml","EnterLinked" ,null);
+                SceneUtils.changeScene(event, "/com/haris/enterlinked/login-view.fxml","EnterLinked" ,null);
             }
         });
     }
