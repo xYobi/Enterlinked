@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 
@@ -13,17 +14,19 @@ import java.util.ResourceBundle;
 public class SearchPageController implements Initializable {
     @FXML
     private VBox filterPane;
+    @FXML private Button bt_filter;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         filterPane.setVisible(false);
-        filterPane.setManaged(false);
+        bt_filter.setOnAction(event-> toggleFilters());
+
 
     }
     @FXML
     private void toggleFilters(){
-        boolean show = !filterPane.isVisible();
-        filterPane.setVisible(show);
+        filterPane.setVisible(!filterPane.isVisible());
+    //    filterPane.setVisible(true);
     }
 
 

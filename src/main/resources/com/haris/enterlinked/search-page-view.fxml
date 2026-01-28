@@ -26,7 +26,7 @@
                   </HBox>
                       <HBox alignment="CENTER" prefHeight="65.0" prefWidth="1710.0" spacing="300.0" style="-fx-background-color: #000000;">
                           <children>
-                              <Button mnemonicParsing="false" text="Filters">
+                              <Button fx:id="bt_filter" mnemonicParsing="false" text="Filters">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -57,7 +57,7 @@
                       </ScrollPane>
                   </children>
               </VBox>
-            <VBox fx:id="filterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="818.0" visible="false" />
+            <VBox fx:id="filterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="818.0" style="-fx-background-color: #ff0000;" visible="false" />
          </children>
       </StackPane>
     </center>
