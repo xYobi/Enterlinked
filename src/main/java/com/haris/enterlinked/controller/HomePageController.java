@@ -20,17 +20,14 @@ public class HomePageController implements Initializable {
     private Label label_welcome;
     private ContentService contentService = new ContentService();
 
+    @FXML
+    private Button bt_discovery;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        bt_logout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Clicked logout");
-                DBUtils.changeScene(event, "/com/haris/enterlinked/login-view.fxml","EnterLinked", null);
-            }
-        });
+
 
     }
     public void setUserInformation(String username){
