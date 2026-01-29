@@ -12,7 +12,7 @@ public class SidebarController implements Initializable {
 
     @FXML private Button bt_home;
     @FXML private Button bt_discovery;
-  //  @FXML private Button bt_library;
+    @FXML private Button bt_library;
     @FXML private Button bt_logout;
 
     @Override
@@ -26,9 +26,9 @@ public class SidebarController implements Initializable {
                 SceneUtils.changeScene(e, "/com/haris/enterlinked/discovery-page-view.fxml", "EnterLinked", null)
         );
 
-//        bt_library.setOnAction(e ->
-   //             DBUtils.changeScene(e, "/com/haris/enterlinked/library-view.fxml", "EnterLinked", null)
-   //     );
+        bt_library.setOnAction(e ->
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/library-page-view.fxml", "EnterLinked", null)
+        );
 
         bt_logout.setOnAction(e ->
                 SceneUtils.changeScene(e, "/com/haris/enterlinked/login-view.fxml", "EnterLinked", null)
