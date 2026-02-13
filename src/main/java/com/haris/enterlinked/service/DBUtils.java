@@ -15,6 +15,10 @@ import java.sql.*;
 
 public class DBUtils {
 
+    public static Connection getConnection() throws SQLException{
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/enterlinked","root","password");
+    }
+
     public static void registerUser(ActionEvent event, String username, String password){
         Connection connection = null;
         PreparedStatement psInsert = null;
@@ -22,7 +26,7 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/enterlinked","root","password");
+            connection = getConnection();
             System.out.println(connection);
             psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username =?");
             psCheckUserExists.setString(1,username);
@@ -80,7 +84,7 @@ public class DBUtils {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/enterlinked","root","password");
+            connection = getConnection();
             preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
             preparedStatement.setString(1,username);
             resultSet = preparedStatement.executeQuery();

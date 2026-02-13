@@ -41,11 +41,11 @@ public class DiscoveryPageController implements Initializable {
         );
         categoryCombo.getSelectionModel().selectFirst();
         typeCombo.getItems().addAll(
-                "New",
+                "Recommended","New",
                 "Trending",
                 "Popular",
-                "Top Rated",
-                "Recommended"
+                "Top Rated"
+
 
         );
         typeCombo.getSelectionModel().selectFirst();

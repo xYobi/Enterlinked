@@ -47,5 +47,24 @@ public class Content {
     private double rating;
     private String medium;
 
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(double popularity) {
+        this.popularity = popularity;
+    }
+
+    private double popularity;
+    private int vote_count;
+
 
 }
