@@ -50,7 +50,7 @@ public class RegisterController implements Initializable {
         bt_backtologin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SceneUtils.changeScene(event, "/com/haris/enterlinked/login-view.fxml","EnterLinked" ,null);
+                SceneUtils.changeScene(event, "/com/haris/enterlinked/login-view.fxml","EnterLinked" );
             }
         });
     }

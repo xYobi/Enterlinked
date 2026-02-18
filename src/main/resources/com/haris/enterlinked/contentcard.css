@@ -1,0 +1,12 @@
+.movie-card {
+    -fx-background-color:  linear-gradient(to top,#141414,#000000);
+    -fx-background-radius: 16;
+    -fx-padding: 12;
+    -fx-alignment: center;
+}
+.movie-card .label {
+    -fx-font-size: 14px;   /* increase this */
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+
+}

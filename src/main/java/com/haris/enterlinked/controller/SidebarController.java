@@ -19,19 +19,19 @@ public class SidebarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         bt_home.setOnAction(e ->
-                SceneUtils.changeScene(e, "/com/haris/enterlinked/home-page-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/home-page-view.fxml", "EnterLinked")
         );
 
         bt_discovery.setOnAction(e ->
-                SceneUtils.changeScene(e, "/com/haris/enterlinked/discovery-page-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/discovery-page-view.fxml", "EnterLinked")
         );
 
         bt_library.setOnAction(e ->
-                SceneUtils.changeScene(e, "/com/haris/enterlinked/library-page-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/library-page-view.fxml", "EnterLinked")
         );
 
         bt_logout.setOnAction(e ->
-                SceneUtils.changeScene(e, "/com/haris/enterlinked/login-view.fxml", "EnterLinked", null)
+                SceneUtils.changeScene(e, "/com/haris/enterlinked/login-view.fxml", "EnterLinked")
         );
     }
 }

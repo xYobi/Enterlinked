@@ -44,7 +44,7 @@ public class DBUtils {
                 psInsert.executeUpdate();
 
 
-                SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
+                SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -98,7 +98,7 @@ public class DBUtils {
                 while (resultSet.next()){
                     String retrievedPassword = resultSet.getString("password");
                     if(retrievedPassword.equals(password)){
-                        SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked",username);
+                        SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
                     }else {
                         System.out.println("Provided Credentials are incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
         bt_register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SceneUtils.changeScene(event,"/com/haris/enterlinked/Register-view.fxml","EnterLinked",null);
+                SceneUtils.changeScene(event,"/com/haris/enterlinked/Register-view.fxml","EnterLinked");
             }
         });
     }

@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to top,#242323,#0e0f0f);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.HomePageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to  bottom,#000000, #3b0585);" stylesheets="@contentcard.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.HomePageController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ff0000;">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="searchField" prefHeight="57.0" prefWidth="628.0" promptText="Type to Search" style="-fx-background-radius: 20;">
                      <HBox.margin>
@@ -20,18 +20,18 @@
                      </padding>
                   </TextField>
                </children></HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1714.0" spacing="300.0" style="-fx-background-color: #000000;">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1714.0" spacing="300.0">
                <children>
                   <Button mnemonicParsing="false" text="Games" />
                   <Button mnemonicParsing="false" text="Movies" />
                   <Button mnemonicParsing="false" text="Books" />
                </children>
             </HBox>
-            <ScrollPane prefHeight="883.0" prefWidth="1710.0">
+            <ScrollPane prefHeight="883.0" prefWidth="1710.0" style="-fx-background-color: transparent; -fx-background: transparent;">
                <content>
                   <VBox prefHeight="888.0" prefWidth="1694.0">
                      <children>
-                        <HBox prefHeight="82.0" prefWidth="1694.0" style="-fx-background-color: #6f2870;">
+                        <HBox prefHeight="82.0" prefWidth="1694.0">
                            <children>
                               <Label prefHeight="107.0" prefWidth="394.0" text="Highly Rated">
                                  <font>

@@ -8,10 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentService {
-    public List<Content> getPopularMovies(int limit){
+    private String queryStart = "Select title,summary,poster_path,rating,popularity,vote_count,release_year,length_minutes FROM movies WHERE vote_count >= 1000 ";
+
+    public List<Content> getMovies(String sortType, int limit){
         List<Content> movies = new ArrayList<>();
-        String sql = (""" 
-                Select title,summary,poster_path,rating,popularity,vote_count FROM movies WHERE vote_count >= 10000 ORDER BY rating DESC LIMIT ?""");
+        String orderBy=null;
+        switch(sortType) {
+            case "New":
+                orderBy = " release_year DESC";
+                break;
+            case "Popular":
+                orderBy ="popularity DESC";
+                break;
+            case  "Top Rated":
+                orderBy ="rating DESC";
+                break;
+            case "Recommended":
+                orderBy="rating DESC";
+                break;
+            default:
+                orderBy = "release_year DESC";
+                break;
+        }
+        String sql = (queryStart +" ORDER BY " + orderBy +" LIMIT ?");
 
         try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setInt(1,limit);
@@ -25,24 +44,83 @@ public class ContentService {
                     c.setMedium("Movie");
                     c.setPopularity(rs.getDouble("popularity"));
                     c.setVote_count(rs.getInt("vote_count"));
-
-                    String posterPath = rs.getString("poster_path");
-                    if(posterPath != null && !posterPath.isBlank()){
-                        c.setImageUrl(("https://image.tmdb.org/t/p/w500" +posterPath));
-                        System.out.println(posterPath);
+                    c.setRelease_year(rs.getInt("release_year"));
+                    c.setLength(rs.getInt("length_minutes"));
+                    System.out.println(sql);
+                    String posterURL = TMDBService.getPosterURL(c.getTitle());
+                    if(posterURL != null){
+                        c.setImageUrl(posterURL);
                     }
                     else {
-                        c.setImageUrl("/com/haris/enterlinked/images.png");
+                        c.setImageUrl(ContentService.class.getResource("/com/haris/enterlinked/images.png").toExternalForm());
                     }
                     movies.add(c);
 
                 }
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
 
     return movies;}
+
+
+
+
+    public List<Content> getMovies(String sortType, String genre,int limit){
+        List<Content> movies = new ArrayList<>();
+        String orderBy=null;
+        switch(sortType) {
+            case "New":
+                orderBy = " release_year DESC";
+                break;
+            case "Popular":
+                orderBy ="popularity DESC";
+                break;
+            case  "Top Rated":
+                orderBy ="rating DESC";
+                break;
+            case "Recommended":
+                orderBy="rating DESC";
+                break;
+            default:
+                orderBy = "release_year DESC";
+                break;
+        }
+        String sql = (queryStart +" ORDER BY " + orderBy +" LIMIT ?");
+
+        try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1,limit);
+
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()){
+                    Content c = new Content();
+                    c.setTitle(rs.getString("title"));
+                    c.setDescription(rs.getString("summary"));
+                    c.setRating(rs.getDouble("rating"));
+                    c.setMedium("Movie");
+                    c.setPopularity(rs.getDouble("popularity"));
+                    c.setVote_count(rs.getInt("vote_count"));
+                    c.setRelease_year(rs.getInt("release_year"));
+                    c.setLength(rs.getInt("length_minutes"));
+                    System.out.println(sql);
+                    String posterURL = TMDBService.getPosterURL(c.getTitle());
+                    if(posterURL != null){
+                        c.setImageUrl(posterURL);
+                    }
+                    else {
+                        c.setImageUrl(ContentService.class.getResource("/com/haris/enterlinked/images.png").toExternalForm());
+                    }
+                    movies.add(c);
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return movies;}
 
 }

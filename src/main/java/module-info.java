@@ -10,6 +10,8 @@ module com.haris.enterlinked {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires java.desktop;
+    requires java.net.http;
+    requires org.json;
 
     opens com.haris.enterlinked to javafx.fxml;
     exports com.haris.enterlinked;

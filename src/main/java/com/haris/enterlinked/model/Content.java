@@ -1,6 +1,34 @@
 package com.haris.enterlinked.model;
 
 public class Content {
+
+    private String title;
+    private String description;
+    private String imageUrl;
+    private double rating;
+    private String medium;
+    private double popularity;
+    private int vote_count;
+    private int length;
+    private int release_year;
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getRelease_year() {
+        return release_year;
+    }
+
+    public void setRelease_year(int release_year) {
+        this.release_year = release_year;
+    }
+
+
     public String getTitle() {
         return title;
     }
@@ -41,11 +69,6 @@ public class Content {
         this.medium = medium;
     }
 
-    private String title;
-    private String description;
-    private String imageUrl;
-    private double rating;
-    private String medium;
 
     public int getVote_count() {
         return vote_count;
@@ -63,8 +86,7 @@ public class Content {
         this.popularity = popularity;
     }
 
-    private double popularity;
-    private int vote_count;
+
 
 
 }
