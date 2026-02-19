@@ -88,11 +88,23 @@ public class ContentService {
                 orderBy = "release_year DESC";
                 break;
         }
-        String sql = (queryStart +" ORDER BY " + orderBy +" LIMIT ?");
+        StringBuilder sql = new StringBuilder(queryStart);
+        if(!genre.equals("All Genres")){
+            sql.append(" AND genres LIKE ? ");
+        }
+        sql.append(" ORDER BY ").append(orderBy).append(" LIMIT ?");
+      //  System.out.println(sql);
+        try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql.toString())){
 
-        try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setInt(1,limit);
 
+            if(!genre.equals("All Genres")){
+                ps.setString(1,"%" + genre + "%");
+                ps.setInt(2,limit);
+            }
+            else{
+                ps.setInt(1,limit);
+            }
+           // System.out.println(sql);
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()){
                     Content c = new Content();
@@ -104,7 +116,6 @@ public class ContentService {
                     c.setVote_count(rs.getInt("vote_count"));
                     c.setRelease_year(rs.getInt("release_year"));
                     c.setLength(rs.getInt("length_minutes"));
-                    System.out.println(sql);
                     String posterURL = TMDBService.getPosterURL(c.getTitle());
                     if(posterURL != null){
                         c.setImageUrl(posterURL);
@@ -116,11 +127,11 @@ public class ContentService {
 
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        return movies;}
+        return movies;
+    }
 
 }
