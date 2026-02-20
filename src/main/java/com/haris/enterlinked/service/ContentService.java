@@ -46,7 +46,7 @@ public class ContentService {
                     c.setVote_count(rs.getInt("vote_count"));
                     c.setRelease_year(rs.getInt("release_year"));
                     c.setLength(rs.getInt("length_minutes"));
-                    System.out.println(sql);
+                   // System.out.println(sql);
                     String posterURL = TMDBService.getPosterURL(c.getTitle());
                     if(posterURL != null){
                         c.setImageUrl(posterURL);
@@ -70,7 +70,7 @@ public class ContentService {
         List<Content> content = new ArrayList<>();
         try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1 , "%" +query + "%");
-            System.out.println(ps);
+          //  System.out.println(ps);
             try(ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Content c = new Content();
