@@ -64,6 +64,41 @@ public class ContentService {
 
 
     return movies;}
+    public List<Content> searchByTitle(String query){
+
+        String sql = "SELECT * FROM movies WHERE title LIKE ? AND vote_count >= 20 LIMIT 50";
+        List<Content> content = new ArrayList<>();
+        try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1 , "%" +query + "%");
+            System.out.println(ps);
+            try(ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Content c = new Content();
+                    c.setTitle(rs.getString("title"));
+                    c.setDescription(rs.getString("summary"));
+                    c.setRating(rs.getDouble("rating"));
+                    c.setMedium("Movie");
+                    c.setPopularity(rs.getDouble("popularity"));
+                    c.setVote_count(rs.getInt("vote_count"));
+                    c.setRelease_year(rs.getInt("release_year"));
+                    c.setLength(rs.getInt("length_minutes"));
+                    System.out.println(sql);
+                    String posterURL = TMDBService.getPosterURL(c.getTitle());
+                    if (posterURL != null) {
+                        c.setImageUrl(posterURL);
+                    } else {
+                        c.setImageUrl(ContentService.class.getResource("/com/haris/enterlinked/images.png").toExternalForm());
+                    }
+                    content.add(c);
+                }
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content;
+
+    }
+
 
 
 

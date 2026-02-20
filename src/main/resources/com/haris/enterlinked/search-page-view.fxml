@@ -6,20 +6,19 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to top,#242323,#0e0f0f);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.SearchPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to  bottom,#000000, #3b0585);" stylesheets="@contentcard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.SearchPageController">
     <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
               <VBox prefHeight="200.0" prefWidth="100.0">
                   <children>
-                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ff0000;">
+                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                           <children>
                               <TextField fx:id="searchField" prefHeight="57.0" prefWidth="628.0" promptText="Type to Search" style="-fx-background-radius: 20;">
                                   <HBox.margin>
@@ -31,7 +30,7 @@
                               </TextField>
                           </children>
                   </HBox>
-                      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="1710.0" spacing="300.0" style="-fx-background-color: #000000;">
+                      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="1710.0" spacing="300.0">
                           <children>
                               <Button fx:id="bt_filter" mnemonicParsing="false" text="Filters">
                            <font>
@@ -40,31 +39,17 @@
                         </Button>
                           </children>
                       </HBox>
-                      <ScrollPane prefHeight="917.0" prefWidth="1720.0">
+                      <ScrollPane prefHeight="917.0" prefWidth="1720.0" style="-fx-background-color: transparent; -fx-background: transparent;">
                           <content>
-                              <VBox fillWidth="false" prefHeight="888.0" prefWidth="1694.0">
-                                  <children>
-                                      <HBox prefHeight="154.0" prefWidth="1694.0" style="-fx-background-color: #704a28;">
-                                          <children>
-                                              <VBox prefHeight="156.0" prefWidth="114.0">
-                                                  <children>
-                                                      <ImageView fitHeight="106.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true" />
-                                                      <Label prefHeight="48.0" prefWidth="166.0" text="Movie Name Placeholder">
-                                                          <font>
-                                                              <Font size="14.0" />
-                                                          </font>
-                                                      </Label>
-                                                  </children>
-                                              </VBox>
-                                          </children>
-                                      </HBox>
-                                  </children>
-                              </VBox>
+                              <VBox fx:id="resultsBox" fillWidth="false" prefHeight="888.0" prefWidth="1694.0" spacing="20.0">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding></VBox>
                           </content>
                       </ScrollPane>
                   </children>
               </VBox>
-            <VBox fx:id="filterPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="815.0" spacing="20.0" style="-fx-background-color: #ff0000; -fx-background-radius: 20;">
+            <VBox fx:id="filterPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="784.0" prefWidth="815.0" spacing="20.0" style="-fx-background-color: #ff0000; -fx-background-radius: 20;" visible="false">
                <children>
                   <HBox prefHeight="760.0" prefWidth="820.0">
                      <children>
