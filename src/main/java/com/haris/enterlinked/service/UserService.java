@@ -34,8 +34,6 @@ public class UserService {
                 psInsert.setString(1,username);
                 psInsert.setString(2,password);
                 psInsert.executeUpdate();
-
-
                 SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
             }
         }catch (SQLException e){
