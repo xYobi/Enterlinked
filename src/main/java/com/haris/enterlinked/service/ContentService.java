@@ -24,10 +24,15 @@ public class ContentService {
         // System.out.println(sql);
         String posterURL = rs.getString("poster_path");
         if(posterURL != null){
-            c.setImageUrl(TMDBService.getPosterURL(posterURL));
+            c.setImageUrl("https://image.tmdb.org/t/p/w500"+ posterURL);
+         //   System.out.println(c.getImageUrl());
         }
         else {
-            c.setImageUrl(ContentService.class.getResource("/com/haris/enterlinked/images.png").toExternalForm());
+           String poster =  TMDBService.getPosterURL(c.getTitle());
+           c.setImageUrl("https://image.tmdb.org/t/p/w500"+ poster);
+            savePosterPath(c.getTitle(),poster);
+         //   System.out.println(poster);
+        //   System.out.println(c.getImageUrl()+"THIS IS THE ELSE ");
         }
         return c;
     }
@@ -51,6 +56,19 @@ public class ContentService {
         }
     }
 
+    public void savePosterPath(String title, String posterPath){
+        String sql= "UPDATE movies SET poster_path = ? WHERE title =? LIMIT 1";
+        try(Connection con = DBUtils.getConnection();PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1,posterPath);
+            ps.setString(2,title);
+            ps.executeUpdate();
+          //  System.out.println("SAVED");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     public List<Content> getMovies(String sortType, int limit){
         List<Content> movies = new ArrayList<>();
