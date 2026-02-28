@@ -1,7 +1,7 @@
 package com.haris.enterlinked.controller;
 
-import com.haris.enterlinked.service.DBUtils;
-import com.haris.enterlinked.service.SceneUtils;
+import com.haris.enterlinked.navigation.SceneUtils;
+import com.haris.enterlinked.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,7 +38,7 @@ public class RegisterController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if(!tf_username.getText().trim().isEmpty()&& !tf_password.getText().trim().isEmpty()){
-                    DBUtils.registerUser(event,tf_username.getText(), tf_password.getText());
+                    UserService.registerUser(event,tf_username.getText(), tf_password.getText());
                 }else{
                     System.out.println("Please fill in all information");
                     Alert alert = new Alert(Alert.AlertType.ERROR);

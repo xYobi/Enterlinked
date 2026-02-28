@@ -2,15 +2,12 @@ package com.haris.enterlinked.controller;
 
 import com.haris.enterlinked.components.ContentCardFactory;
 import com.haris.enterlinked.model.Content;
-import com.haris.enterlinked.service.SceneUtils;
+import com.haris.enterlinked.navigation.SceneUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 
 import java.net.URL;
 import java.util.List;

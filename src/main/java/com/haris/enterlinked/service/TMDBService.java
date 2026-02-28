@@ -16,6 +16,7 @@ public class TMDBService {
 
     public static String getPosterURL(String title){
         try{
+
             String q = URLEncoder.encode(title, StandardCharsets.UTF_8);
             String url = "https://api.themoviedb.org/3/search/movie?api_key=" + Api_key + "&query=" + q;
 

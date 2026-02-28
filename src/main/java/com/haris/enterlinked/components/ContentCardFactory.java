@@ -1,7 +1,6 @@
 package com.haris.enterlinked.components;
 
 import com.haris.enterlinked.model.Content;
-import com.haris.enterlinked.service.SceneUtils;
 import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;

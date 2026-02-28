@@ -99,10 +99,6 @@ public class ContentService {
 
     }
 
-
-
-
-
     public List<Content> getMovies(String sortType, String genre,int limit){
         List<Content> movies = new ArrayList<>();
         String orderBy=null;

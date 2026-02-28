@@ -1,7 +1,6 @@
 package com.haris.enterlinked.controller;
 
-import com.haris.enterlinked.service.DBUtils;
-import com.haris.enterlinked.service.SceneUtils;
+import com.haris.enterlinked.navigation.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
