@@ -48,7 +48,7 @@ public class DiscoveryPageController implements Initializable {
         typeCombo.getItems().addAll("Top Rated", "New", "Popular", "Recommended");
         typeCombo.getSelectionModel().selectFirst();
 
-        genreCombo.getItems().addAll("All Genres", "Action", "Adventure", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Sci-Fi", "Thriller", "RPG");
+        genreCombo.getItems().addAll("All Genres", "Action", "Adventure","Animation", "Comedy", "Drama", "Family","Fantasy", "Horror", "Mystery", "Science Fiction", "Thriller", "RPG","Romance","War","Western");
         genreCombo.getSelectionModel().selectFirst();
 
         typeCombo.setOnAction(event -> loadMovies());

@@ -18,46 +18,36 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
-    @FXML
-    private Button bt_logout;
-
-    @FXML
-    private Label label_welcome;
+    @FXML private Label label_welcome;
     private ContentService contentService = new ContentService();
-
-    @FXML
-    private Button bt_discovery;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private HBox moviesRow;
+    @FXML private Button bt_discovery;
+    @FXML private TextField searchField;
+    @FXML private HBox highlyRated;
+    @FXML private HBox hb_new;
+    @FXML private HBox hb_popular;
+    @FXML private HBox hb_recommended;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchField.setOnMouseClicked(e -> {
             SceneUtils.changeScene(searchField, "/com/haris/enterlinked/search-page-view.fxml", "Enterlinked");
         });
-        loadMovies();
 
-
+        populateRow(highlyRated,"Top Rated",7);
+        populateRow(hb_new,"New",7);
+        populateRow(hb_popular,"Popular",7);
+        populateRow(hb_recommended,"Recommended",7);
     }
-    public void setUserInformation (String username){
-    }
 
-    private void loadMovies(){
-        moviesRow.getChildren().clear();
-        List<Content> movies = contentService.getMovies("Top Rated",7);
-
+    private void populateRow(HBox row,String sortType, int Limit){
+        row.getChildren().clear();
+        List<Content> movies = contentService.getMovies(sortType,Limit);
         for(Content movie: movies){
             VBox card = ContentCardFactory.create(movie);
             card.setOnMouseClicked(event -> SceneUtils.changeContent(card, "/com/haris/enterlinked/view-content-page.fxml", "EnterLinked", movie,"/com/haris/enterlinked/home-page-view.fxml"));
-            moviesRow.getChildren().add(card);
+            row.getChildren().add(card);
         }
     }
-
-
 }
 
 

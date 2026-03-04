@@ -12,6 +12,7 @@ module com.haris.enterlinked {
     requires java.desktop;
     requires java.net.http;
     requires org.json;
+    requires com.zaxxer.hikari;
 
     opens com.haris.enterlinked to javafx.fxml;
     exports com.haris.enterlinked;

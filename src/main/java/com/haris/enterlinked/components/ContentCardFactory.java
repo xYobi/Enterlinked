@@ -18,7 +18,7 @@ public class ContentCardFactory {
 
         if(movie.getImageUrl() !=null){
             poster.setImage((new Image(movie.getImageUrl(), true)));
-        }
+       }
 
         Label title = new Label(movie.getTitle());
         title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");

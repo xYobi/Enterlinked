@@ -11,6 +11,18 @@ public class Content {
     private int vote_count;
     private int length;
     private int release_year;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+
 
     public int getLength() {
         return length;
