@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <ScrollPane hbarPolicy="NEVER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.haris.enterlinked.controller.ContentPageController">
    <content>
       <BorderPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(to top,#242323,#0e0f0f);">
@@ -17,7 +16,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Add" />
+                              <Button fx:id="bt_add" mnemonicParsing="false" text="Add" />
                               <ImageView fx:id="i_poster" fitHeight="310.0" fitWidth="286.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                            <padding>

@@ -1,26 +1,20 @@
 package com.haris.enterlinked.controller;
 
 import com.haris.enterlinked.components.ContentCardFactory;
-
 import com.haris.enterlinked.model.Content;
 import com.haris.enterlinked.service.ContentService;
 import com.haris.enterlinked.navigation.SceneUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
-    @FXML private Label label_welcome;
     private ContentService contentService = new ContentService();
-    @FXML private Button bt_discovery;
     @FXML private TextField searchField;
     @FXML private HBox highlyRated;
     @FXML private HBox hb_new;

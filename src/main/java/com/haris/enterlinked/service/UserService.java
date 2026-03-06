@@ -1,15 +1,20 @@
 package com.haris.enterlinked.service;
 
+import com.haris.enterlinked.model.User;
 import com.haris.enterlinked.navigation.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserService {
+    private static User currentUser;
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
 
     public static void registerUser(ActionEvent event, String username, String password){
         Connection connection = null;
@@ -35,6 +40,7 @@ public class UserService {
                 psInsert.setString(2,password);
                 psInsert.executeUpdate();
                 SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
+
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -72,23 +78,29 @@ public class UserService {
     public static void logInUser(ActionEvent event,String username, String password){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
+        ResultSet rs = null;
         try{
             connection = DBUtils.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
+            preparedStatement = connection.prepareStatement("SELECT user_id ,username, password FROM users WHERE username = ?");
             preparedStatement.setString(1,username);
-            resultSet = preparedStatement.executeQuery();
+            rs = preparedStatement.executeQuery();
 
-            if(!resultSet.isBeforeFirst()){
+            if(!rs.isBeforeFirst()){
                 System.out.println("User not found in database");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Provided Credentials are incorrect");
                 alert.show();
             }else {
-                while (resultSet.next()){
-                    String retrievedPassword = resultSet.getString("password");
+                while (rs.next()){
+                    String retrievedPassword = rs.getString("password");
+
                     if(retrievedPassword.equals(password)){
                         SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
+                        User u = new User();
+                        u.setUser_id(rs.getInt("user_id"));
+                        u.setUsername(rs.getString("username"));
+                        currentUser = u;
+
                     }else {
                         System.out.println("Provided Credentials are incorrect");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -101,16 +113,16 @@ public class UserService {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
-            if(resultSet != null){
+            if(rs != null){
                 try{
-                    resultSet.close();
+                    rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
             if (preparedStatement !=null){
                 try {
-                    resultSet.close();
+                    rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

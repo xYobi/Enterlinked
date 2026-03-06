@@ -1,7 +1,7 @@
 package com.haris.enterlinked.service;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
 import java.io.IOException;
 import java.sql.*;
 

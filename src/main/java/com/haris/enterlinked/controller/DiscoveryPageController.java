@@ -4,17 +4,15 @@ import com.haris.enterlinked.components.ContentCardFactory;
 import com.haris.enterlinked.model.Content;
 import com.haris.enterlinked.service.ContentService;
 import com.haris.enterlinked.navigation.SceneUtils;
+import com.haris.enterlinked.service.SavedContentService;
+import com.haris.enterlinked.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,10 +29,13 @@ public class DiscoveryPageController implements Initializable {
     @FXML private ImageView i_poster;
     @FXML private VBox vb_results;
     @FXML private Button bt_more;
+    @FXML Button bt_add;
 
     private Content selectedMovie;
     private ContentService contentService = new ContentService();
     private int Cards_per_row = 4;
+    private SavedContentService save = new SavedContentService();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,12 +56,28 @@ public class DiscoveryPageController implements Initializable {
         genreCombo.setOnAction(event -> loadMovies());
 
         loadMovies();
+
+        bt_add.setOnAction(e ->{
+                int userId = UserService.getCurrentUser().getUser_id();
+                int movieId = selectedMovie.getId();
+                if(!save.checkSave(userId, movieId)){
+                    save.saveMovie(userId,movieId);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Movie Saved");
+                    alert.show();
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Movie Already Saved In Library");
+                    alert.show();
+                }
+        });
     }
 
     private void loadMovies() {
 
         vb_results.getChildren().clear();
-        List<Content> movies = contentService.getMovies(typeCombo.getValue(), genreCombo.getValue(),50);
+        List<Content> movies = contentService.getMovies(typeCombo.getValue(), genreCombo.getValue(),100);
         HBox row = null;
         for (int i = 0; i< movies.size(); i++){
             if(i % Cards_per_row ==0){
@@ -86,9 +103,6 @@ public class DiscoveryPageController implements Initializable {
 
             row.getChildren().add(card);
         }
-
-
-
     }
 }
 

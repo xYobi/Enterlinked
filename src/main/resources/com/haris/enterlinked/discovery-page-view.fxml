@@ -89,7 +89,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="500.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Add" />
+                              <Button fx:id="bt_add" mnemonicParsing="false" text="Add" />
                               <Button fx:id="bt_more" mnemonicParsing="false" text="Show More" />
                            </children>
                         </HBox>

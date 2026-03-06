@@ -13,16 +13,9 @@ public class Content {
     private int release_year;
     private int id;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-
+    public void setId(int id) {this.id = id;}
 
     public int getLength() {
         return length;
@@ -39,7 +32,6 @@ public class Content {
     public void setRelease_year(int release_year) {
         this.release_year = release_year;
     }
-
 
     public String getTitle() {
         return title;
@@ -80,7 +72,6 @@ public class Content {
     public void setMedium(String medium) {
         this.medium = medium;
     }
-
 
     public int getVote_count() {
         return vote_count;

@@ -1,6 +1,6 @@
 package com.haris.enterlinked.service;
-import com.haris.enterlinked.model.Content;
 
+import com.haris.enterlinked.model.Content;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ public class ContentService {
     private String queryStart = "Select title,summary,poster_path,rating,popularity,vote_count,release_year,length_minutes,id FROM movies WHERE vote_count >= 1000 ";
 
 
-    private Content setMovies(ResultSet rs) throws Exception{
+    public  Content setMovies(ResultSet rs) throws Exception{
         Content c = new Content();
         c.setTitle(rs.getString("title"));
         c.setDescription(rs.getString("summary"));
@@ -122,7 +122,7 @@ public class ContentService {
 
     public List<Content> searchByTitle(String query){
 
-        String sql = "SELECT * FROM movies WHERE title LIKE ? AND vote_count >= 20 LIMIT 50";
+        String sql = "SELECT * FROM movies WHERE title LIKE ? AND vote_count >= 20 LIMIT 100";
         List<Content> content = new ArrayList<>();
         try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1 , "%" +query + "%");

@@ -12,24 +12,11 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
-
-
-
-
-
 public class RegisterController implements Initializable {
-
-    @FXML
-    private Button bt_register;
-    @FXML
-    private Button bt_backtologin;
-    @FXML
-    private TextField tf_username;
-    @FXML
-    private TextField tf_password;
-
+    @FXML private Button bt_register;
+    @FXML private Button bt_backtologin;
+    @FXML private TextField tf_username;
+    @FXML private TextField tf_password;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
