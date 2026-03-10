@@ -59,6 +59,53 @@ public class SavedContentService {
         return movies;
     }
 
+    public List<Content> getAlphabetical(int userId){
+        List<Content> movies = new ArrayList<>();
+        ContentService contentService = new ContentService();
+        String sql = """
+                SELECT movies.title,movies.summary,movies.poster_path,movies.rating,movies.popularity,movies.vote_count,movies.release_year,movies.length_minutes,movies.id
+                FROM movies
+                JOIN saved_content ON movies.id = saved_content.movie_id
+                WHERE saved_content.username_id = ?
+                ORDER BY movies.title ASC""";
+
+        try(Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1,userId);
+
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()){
+                    movies.add(contentService.setMovies(rs));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+    public List<Content> getRecent(int userID){
+        List<Content> movies = new ArrayList<>();
+        ContentService contentService = new ContentService();
+        String sql= """
+                SELECT movies.title,movies.summary,movies.poster_path,movies.rating,movies.popularity,movies.vote_count,movies.release_year,movies.length_minutes,movies.id
+                FROM movies
+                JOIN saved_content ON movies.id = saved_content.movie_id
+                WHERE saved_content.username_id = ?
+                ORDER BY saved_at DESC""";
+        try(Connection con =DBUtils.getConnection(); PreparedStatement ps =con.prepareStatement(sql)){
+            ps.setInt(1,userID);
+
+            try(ResultSet rs = ps.executeQuery()) {
+                while (rs.next()){
+                    movies.add(contentService.setMovies(rs));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
 
 
 

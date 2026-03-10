@@ -7,6 +7,7 @@ import com.haris.enterlinked.service.SavedContentService;
 import com.haris.enterlinked.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,12 +21,11 @@ import java.util.ResourceBundle;
 
 public class LibraryPageController implements Initializable {
 
-    @FXML
-    private ComboBox<String> cb_Category;
-    @FXML
-    private TextField searchField;
-    @FXML
-    private VBox libraryContainer;
+    @FXML private ComboBox<String> cb_Category;
+    @FXML private TextField searchField;
+    @FXML private VBox libraryContainer;
+    @FXML private Button bt_recently;
+    @FXML private Button bt_alpha;
     private int Cards_per_row = 8;
     private SavedContentService savedContent = new SavedContentService();
 
@@ -40,13 +40,20 @@ public class LibraryPageController implements Initializable {
                 "Books"
         );
         cb_Category.getSelectionModel().selectFirst();
-        loadMovies();
+        loadMovies(savedContent.getSavedMovies(UserService.getCurrentUser().getUser_id()));
+
+        bt_alpha.setOnAction(e->{
+            int userId = UserService.getCurrentUser().getUser_id();
+            loadMovies(savedContent.getAlphabetical(userId));
+        });
+        bt_recently.setOnAction(event -> {
+            int userId = UserService.getCurrentUser().getUser_id();
+            loadMovies(savedContent.getRecent(userId));
+        });
     }
 
-    private void loadMovies() {
+    private void loadMovies(List<Content> savedMovies) {
         libraryContainer.getChildren().clear();
-        int userId = UserService.getCurrentUser().getUser_id();
-        List<Content> savedMovies = savedContent.getSavedMovies(userId);
         HBox row = null;
         for (int i = 0; i < savedMovies.size(); i++) {
             if (i % Cards_per_row == 0) {
