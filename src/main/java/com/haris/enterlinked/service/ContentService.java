@@ -8,28 +8,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentService {
-    private String queryStart = "Select title,summary,poster_path,rating,popularity,vote_count,release_year,length_minutes,id FROM movies WHERE vote_count >= 1000 ";
+    private String queryStart = "Select title,summary,poster_path,rating,popularity,vote_count,release_year,length_minutes,id,content_type FROM Content WHERE vote_count >= 1000 ";
 
 
-    public  Content setMovies(ResultSet rs) throws Exception{
+    public  Content setContent(ResultSet rs){
         Content c = new Content();
-        c.setTitle(rs.getString("title"));
-        c.setDescription(rs.getString("summary"));
-        c.setRating(rs.getDouble("rating"));
-        c.setMedium("Movie");
-        c.setPopularity(rs.getDouble("popularity"));
-        c.setVote_count(rs.getInt("vote_count"));
-        c.setRelease_year(rs.getInt("release_year"));
-        c.setLength(rs.getInt("length_minutes"));
-        c.setId(rs.getInt("id"));
-        // System.out.println(sql);
-        String posterURL = rs.getString("poster_path");
-        if(posterURL != null){
-            c.setImageUrl("https://image.tmdb.org/t/p/w154"+ posterURL);
-         //   System.out.println(c.getImageUrl());
-        }
-        else {
+        try {
+            c.setTitle(rs.getString("title"));
+            c.setDescription(rs.getString("summary"));
+            c.setRating(rs.getDouble("rating"));
+            c.setPopularity(rs.getDouble("popularity"));
+            c.setVote_count(rs.getInt("vote_count"));
+            c.setRelease_year(rs.getInt("release_year"));
+            c.setLength(rs.getInt("length_minutes"));
+            c.setId(rs.getInt("id"));
+            c.setMedium(rs.getString("content_type"));
+            // System.out.println(sql);
+
+            String posterURL = rs.getString("poster_path");
+            if (posterURL != null) {
+                if (rs.getString("content_type").equals("game")) {
+                    c.setImageUrl(posterURL);
+                } else if (rs.getString("content_type").equals("book")) {
+                    c.setImageUrl(posterURL);
+                } else {
+                    c.setImageUrl("https://image.tmdb.org/t/p/w154" + posterURL);
+                }
+                //   System.out.println(c.getImageUrl());
+            } else {
                 c.setImageUrl(getClass().getResource("/com/haris/enterlinked/No_Poster_Found.png").toExternalForm());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return c;
     }
@@ -52,84 +62,77 @@ public class ContentService {
         }
     }
 
-    public List<Content> getMovies(String sortType, int limit){
-        List<Content> movies = new ArrayList<>();
-        String orderBy=sort(sortType);
-
-        String sql = (queryStart +" ORDER BY " + orderBy +" LIMIT ?");
-
-        try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setInt(1,limit);
-            try(ResultSet rs = ps.executeQuery()){
-                while (rs.next()){
-                    movies.add(setMovies(rs));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }return movies;
-    }
-
-    public List<Content> getMovies(String sortType, String genre,int limit){
-        List<Content> movies = new ArrayList<>();
+    public List<Content> getContentbyGenre(String sortType, String genre, String Content,int limit){
+        List<Content> ContentList = new ArrayList<>();
         String orderBy=sort(sortType);
 
         StringBuilder sql = new StringBuilder(queryStart);
+        if (!Content.equals("All Mediums")){
+            sql.append(" AND content_type = ? ");
+        }
         if(!genre.equals("All Genres")){
             sql.append(" AND genres LIKE ? ");
         }
         sql.append(" ORDER BY ").append(orderBy).append(" LIMIT ?");
       //  System.out.println(sql);
         try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql.toString())){
+            int i = 1;
 
-
+            if (!Content.equals("All Mediums")){
+                ps.setString(i++,Content);
+            }
             if(!genre.equals("All Genres")){
-                ps.setString(1,"%" + genre + "%");
-                ps.setInt(2,limit);
+                ps.setString(i++,"%" + genre + "%");
             }
-            else{
-                ps.setInt(1,limit);
-            }
+                ps.setInt(i,limit);
            // System.out.println(sql);
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()){
-                    movies.add(setMovies(rs));
-
+                    ContentList.add(setContent(rs));
                 }
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        return movies;
+        return ContentList;
     }
 
-    private  List<Content> getMovies(Connection con , String sortType, int limit) throws Exception{
-        List<Content>movies = new ArrayList<>();
-        String orderBy = sort(sortType);
-        String sql = queryStart + " ORDER BY "+ orderBy +" LIMIT ?";
+    public List<Content> getByContentType(String contentType,String sortType, int limit){
+        List<Content> content = new ArrayList<>();
+        String orderBy=sort(sortType);
+        String sql;
+        if(sortType == null){
+             sql = (queryStart +" AND content_type = ? LIMIT ?");
+        }
+        else {
+             sql = (queryStart +" AND content_type = ? ORDER BY " + orderBy +" LIMIT ?");
+        }
 
-        try(PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setInt(1,limit);
+        try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1,contentType);
+            ps.setInt(2,limit);
+
             try(ResultSet rs = ps.executeQuery()){
                 while (rs.next()){
-                    movies.add(setMovies(rs));
+                    content.add(setContent(rs));
                 }
             }
-        }return  movies;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }return content;
     }
-
 
     public List<Content> searchByTitle(String query){
 
-        String sql = "SELECT * FROM movies WHERE title LIKE ? AND vote_count >= 20 LIMIT 100";
+        String sql = "SELECT * FROM Content WHERE title LIKE ? AND vote_count >= 20 LIMIT 100";
         List<Content> content = new ArrayList<>();
         try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1 , "%" +query + "%");
             //  System.out.println(ps);
             try(ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    content.add(setMovies(rs));
+                    content.add(setContent(rs));
                 }
             }
         }catch (Exception e) {

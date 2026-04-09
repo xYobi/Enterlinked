@@ -31,7 +31,7 @@ public class UserService {
             if(resultSet.isBeforeFirst()){
                 System.out.println("User Already Exists");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert   .setContentText("This username is currently in use");
+                alert.setContentText("This username is currently in use");
                 alert.show();
             }
             else {
@@ -40,6 +40,9 @@ public class UserService {
                 psInsert.setString(2,password);
                 psInsert.executeUpdate();
                 SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
+                User u = new User();
+                u.setUsername(username);
+                currentUser = u;
 
             }
         }catch (SQLException e){

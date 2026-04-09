@@ -25,7 +25,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="67.0" prefWidth="800.0">
                            <children>
-                              <Label fx:id="lb_title" text="Title" textFill="WHITE">
+                              <Label fx:id="lb_title" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -34,17 +34,17 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="148.0" prefWidth="800.0" spacing="250.0">
                            <children>
-                              <Label fx:id="lb_length" text="Length" textFill="WHITE">
+                              <Label fx:id="lb_length" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lb_year" text="Year" textFill="WHITE">
+                              <Label fx:id="lb_year" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lb_rating" text="Rating" textFill="WHITE">
+                              <Label fx:id="lb_rating" text="N/A" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -73,25 +73,6 @@
                               <Button mnemonicParsing="false" text="Genre 3" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="800.0">
-                           <children>
-                              <Label text="Cast" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="117.0" prefWidth="800.0" spacing="200.0">
-                           <children>
-                              <Button mnemonicParsing="false" text="Cast 1" />
-                              <Button mnemonicParsing="false" text="Cast 2" />
-                              <Button mnemonicParsing="false" text="Cast3" />
-                           </children>
-                        </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="780.0">
                            <children>
                               <Label text="Summary" textFill="WHITE">
@@ -106,7 +87,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="132.0" prefWidth="800.0">
                            <children>
-                              <Label fx:id="lb_description" text="Description" textFill="WHITE" />
+                              <Label fx:id="lb_description" text="N/A" textFill="WHITE" />
                            </children>
                            <padding>
                               <Insets left="20.0" />
@@ -126,7 +107,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Platform" textFill="WHITE" />
+                              <Label text="N/A" textFill="WHITE" />
                            </children>
                            <padding>
                               <Insets left="20.0" />

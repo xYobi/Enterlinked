@@ -10,11 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javax.naming.ContextNotEmptyException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,27 +38,45 @@ public class LibraryPageController implements Initializable {
                 "Books"
         );
         cb_Category.getSelectionModel().selectFirst();
-        loadMovies(savedContent.getSavedMovies(UserService.getCurrentUser().getUser_id()));
+        loadContent(savedContent.getSavedContent(UserService.getCurrentUser().getUser_id()));
+        cb_Category.setOnAction(e -> loadByCategory());
 
         bt_alpha.setOnAction(e->{
             int userId = UserService.getCurrentUser().getUser_id();
-            loadMovies(savedContent.getAlphabetical(userId));
+            loadContent(savedContent.getAlphabetical(userId));
         });
         bt_recently.setOnAction(event -> {
             int userId = UserService.getCurrentUser().getUser_id();
-            loadMovies(savedContent.getRecent(userId));
+            loadContent(savedContent.getRecent(userId));
         });
     }
+    private void loadByCategory() {
+        int userId = UserService.getCurrentUser().getUser_id();
 
-    private void loadMovies(List<Content> savedMovies) {
+        switch (cb_Category.getValue()) {
+            case "Movies":
+                loadContent(savedContent.getSavedByType(userId, "movie"));
+                break;
+            case "Games":
+                loadContent(savedContent.getSavedByType(userId, "game"));
+                break;
+            case "Books":
+                loadContent(savedContent.getSavedByType(userId, "book"));
+                break;
+            default:
+                loadContent(savedContent.getSavedContent(userId));
+                break;
+        }
+    }
+    private void loadContent(List<Content> savedContentList) {
         libraryContainer.getChildren().clear();
         HBox row = null;
-        for (int i = 0; i < savedMovies.size(); i++) {
+        for (int i = 0; i < savedContentList.size(); i++) {
             if (i % Cards_per_row == 0) {
                 row = new HBox(20);
                 libraryContainer.getChildren().add(row);
             }
-            Content movie = savedMovies.get(i);
+            Content movie = savedContentList.get(i);
             VBox card = ContentCardFactory.create(movie);
             card.setOnMouseClicked(event -> SceneUtils.changeContent(card, "/com/haris/enterlinked/view-content-page.fxml", "EnterLinked", movie,"/com/haris/enterlinked/library-page-view.fxml"));
             row.getChildren().add(card);

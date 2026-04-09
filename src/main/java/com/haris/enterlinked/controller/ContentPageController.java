@@ -24,7 +24,7 @@ public class ContentPageController implements Initializable {
     private String previousFXML;
     @FXML Button bt_back;
     @FXML Button bt_add;
-    private Content selectedMovie;
+
     private SavedContentService save = new SavedContentService();
     private int movie_id;
     public String getPreviousFXML() {
@@ -40,14 +40,15 @@ public class ContentPageController implements Initializable {
 
     public void setContent(Content c){
         lb_title.setText(c.getTitle());
-        lb_description.setText(c.getDescription());
+        if(c.getDescription() != null) {
+            lb_description.setText(c.getDescription());
+        }
         lb_rating.setText(String.valueOf(c.getRating())+"/10");
-       // lb_year.setText(String.valueOf(c.get));
         i_poster.setImage(new Image(c.getImageUrl(),true));
         lb_year.setText(String.valueOf(c.getRelease_year()));
         lb_length.setText(String.valueOf(c.getLength())+" Minutes");
         movie_id = c.getId();
-        lb_description.setWrapText(true);      // allow multi-line
+        lb_description.setWrapText(true);
         lb_description.setTextOverrun(javafx.scene.control.OverrunStyle.CLIP);
     }
 
@@ -61,14 +62,14 @@ public class ContentPageController implements Initializable {
             int userId = UserService.getCurrentUser().getUser_id();
             int movieId = movie_id;
             if(!save.checkSave(userId, movieId)){
-                save.saveMovie(userId,movieId);
+                save.saveContent(userId,movieId);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Movie Saved");
+                alert.setContentText("Content Saved");
                 alert.show();
             }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Movie Already Saved In Library");
+                alert.setContentText("Content Already Saved In Library");
                 alert.show();
             }
         });

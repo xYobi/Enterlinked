@@ -1,5 +1,6 @@
 package com.haris.enterlinked;
 
+import com.haris.enterlinked.service.DBUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,5 +20,10 @@ public class EnterLinkedApp extends Application {
     }
 
 
-    public static void main(String[] args) {launch();}
+    public static void main(String[] args)  {
+        launch();
+
+    }
 }
+
+

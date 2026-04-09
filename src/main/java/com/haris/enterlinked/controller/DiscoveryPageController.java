@@ -31,7 +31,7 @@ public class DiscoveryPageController implements Initializable {
     @FXML private Button bt_more;
     @FXML Button bt_add;
 
-    private Content selectedMovie;
+    private Content selectedContent;
     private ContentService contentService = new ContentService();
     private int Cards_per_row = 4;
     private SavedContentService save = new SavedContentService();
@@ -54,51 +54,75 @@ public class DiscoveryPageController implements Initializable {
 
         typeCombo.setOnAction(event -> loadMovies());
         genreCombo.setOnAction(event -> loadMovies());
+        categoryCombo.setOnAction(event -> loadMovies());
 
         loadMovies();
 
         bt_add.setOnAction(e ->{
                 int userId = UserService.getCurrentUser().getUser_id();
-                int movieId = selectedMovie.getId();
+                int movieId = selectedContent.getId();
                 if(!save.checkSave(userId, movieId)){
-                    save.saveMovie(userId,movieId);
+                    save.saveContent(userId,movieId);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("Movie Saved");
+                    alert.setContentText("Content Saved");
                     alert.show();
                 }
                 else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Movie Already Saved In Library");
+                    alert.setContentText("Content Already Saved In Library");
                     alert.show();
                 }
         });
     }
 
     private void loadMovies() {
+        String sortType = typeCombo.getValue();
+        String genre = genreCombo.getValue();
+        String selectedCategory;
+        switch (categoryCombo.getValue()) {
+            case "Games":
+                selectedCategory = "game";
+                break;
+            case "Movies":
+                selectedCategory = "movie";
+                break;
+            case "Books":
+                selectedCategory = "book";
+                break;
+            default:
+                selectedCategory ="All Mediums";
+                break;
 
+        }
         vb_results.getChildren().clear();
-        List<Content> movies = contentService.getMovies(typeCombo.getValue(), genreCombo.getValue(),100);
+        List<Content> contentList = contentService.getContentbyGenre(sortType,genre,selectedCategory,100);
         HBox row = null;
-        for (int i = 0; i< movies.size(); i++){
+        for (int i = 0; i< contentList.size(); i++){
             if(i % Cards_per_row ==0){
                 row = new HBox(20);
                 vb_results.getChildren().add(row);
             }
-            Content movie = movies.get(i);
-            VBox card = ContentCardFactory.create(movie);
+            Content content = contentList.get(i);
+            VBox card = ContentCardFactory.create(content);
             card.setOnMouseClicked(event -> {
-                selectedMovie = movie;
-                lb_title.setText(movie.getTitle());
-                lb_description.setText(movie.getDescription());
+                selectedContent = content;
+                lb_title.setText(content.getTitle());
+                lb_description.setText(content.getDescription());
                 lb_description.setWrapText(true);
-                lb_length.setText(String.valueOf(movie.getLength())+ " minutes");
-                lb_rating.setText(String.valueOf(movie.getRating())+"/10");
-                i_poster.setImage(new Image(movie.getImageUrl(),true));
+                if(selectedCategory.equals("movie")){
+                    lb_length.setText(String.valueOf(content.getLength())+ " minutes");
+                } else if (selectedCategory.equals("book")) {
+                    lb_length.setText(String.valueOf(content.getLength())+ " pages");
+                } else{
+                    lb_length.setText("N/A");
+                }
+                lb_rating.setText(String.valueOf(content.getRating())+"/10");
+                i_poster.setImage(new Image(content.getImageUrl(),true));
 
             });
             bt_more.setOnAction(event -> SceneUtils.changeContent(bt_more,
                     "/com/haris/enterlinked/view-content-page.fxml",
-                    "EnterLinked", selectedMovie,
+                    "EnterLinked", selectedContent,
                     "/com/haris/enterlinked/discovery-page-view.fxml"));
 
             row.getChildren().add(card);
