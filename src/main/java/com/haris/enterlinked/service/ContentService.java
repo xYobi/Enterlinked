@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentService {
-    private String queryStart = "Select title,summary,poster_path,rating,popularity,vote_count,release_year,length_minutes,id,content_type FROM Content WHERE vote_count >= 1000 ";
+    private String queryStart = "Select title,summary,poster_path,rating,popularity,vote_count,release_year,length_minutes,id,content_type,genres FROM Content WHERE vote_count >= 1000 ";
 
 
     public  Content setContent(ResultSet rs){
@@ -23,6 +23,7 @@ public class ContentService {
             c.setLength(rs.getInt("length_minutes"));
             c.setId(rs.getInt("id"));
             c.setMedium(rs.getString("content_type"));
+            c.setGenres(rs.getString("genres"));
             // System.out.println(sql);
 
             String posterURL = rs.getString("poster_path");
@@ -58,7 +59,7 @@ public class ContentService {
                 return "rating DESC";
 
             default:
-                return   "release_year DESC";
+                return"release_year DESC";
         }
     }
 
@@ -125,7 +126,7 @@ public class ContentService {
 
     public List<Content> searchByTitle(String query){
 
-        String sql = "SELECT * FROM Content WHERE title LIKE ? AND vote_count >= 20 LIMIT 100";
+        String sql = "SELECT * FROM Content WHERE title LIKE ? AND vote_count >= 20 LIMIT 200";
         List<Content> content = new ArrayList<>();
         try (Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1 , "%" +query + "%");
@@ -139,6 +140,71 @@ public class ContentService {
             e.printStackTrace();
         }
         return content;
+    }
+
+    public List<Content> getRecommendationCandidates(int userId, int limit,String medium){
+        String sql = "SELECT c.* FROM Content c WHERE c.vote_count >=1000 AND c.id NOT IN (SELECT content_id FROM saved_content WHERE username_id = ?) AND c.content_type = ? ORDER BY c.rating DESC, c.popularity DESC LIMIT ?";
+        List<Content> content = new ArrayList<>();
+        try (Connection con = DBUtils.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1, userId);
+            ps.setInt( 3,limit);
+            ps.setString(2,medium);
+            try (ResultSet rs = ps.executeQuery()){
+                while(rs.next()){
+                    content.add(setContent(rs));
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }return content;
+    }
+    public List<Content> getRecommendationCandidates(int userId, int limit,String medium, String genre){
+        StringBuilder sql = new StringBuilder("SELECT c.* FROM Content c WHERE c.vote_count >=1000 AND c.id NOT IN (SELECT content_id FROM saved_content WHERE username_id = ?)");
+        List<Content> content = new ArrayList<>();
+        if(!medium.equals("All Mediums")){
+            sql.append(" AND c.content_type = ? ");
+        }
+        if(!genre.equals("All Genres")){
+            sql.append(" AND c.genres LIKE ? ");
+        }
+        sql.append(" ORDER BY c.rating DESC, c.popularity DESC LIMIT ? ");
+        try(Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql.toString())){
+            int i = 1;
+            ps.setInt(i++, userId);
+            if(!medium.equals("All Mediums")){
+                ps.setString(i++, medium);
+            }
+            if (!genre.equals("All Genres")){
+                ps.setString(i++,"%"+genre+"%");
+            }
+            ps.setInt(i, limit);
+            try(ResultSet rs = ps.executeQuery()){
+                while(rs.next()){
+                    content.add(setContent(rs));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }return content;
+    }
+    public List<Content> getSimilarCandidates(String contentType,int limit){
+        List<Content> content = new ArrayList<>();
+        String sql = queryStart + " AND content_type = ? LIMIT ?";
+        try(Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1,contentType);
+           // ps.setString(2,"%"+ genres + "%");
+            ps.setInt(2,limit);
+
+        try(ResultSet rs = ps.executeQuery()){
+            while(rs.next()){
+                content.add(setContent(rs));
+            }
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }return content;
     }
 
 }

@@ -1,0 +1,13 @@
+.genre-pill {
+    -fx-background-color: #2d2d2d;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-padding: 6 14 6 14;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.genre-empty-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}

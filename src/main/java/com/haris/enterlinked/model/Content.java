@@ -12,6 +12,16 @@ public class Content {
     private int length;
     private int release_year;
     private int id;
+    private String genres;
+
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
 
     public int getId() {return id;}
 

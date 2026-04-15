@@ -39,10 +39,11 @@ public class UserService {
                 psInsert.setString(1,username);
                 psInsert.setString(2,password);
                 psInsert.executeUpdate();
-                SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
                 User u = new User();
                 u.setUsername(username);
                 currentUser = u;
+                SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
+
 
             }
         }catch (SQLException e){
@@ -98,11 +99,12 @@ public class UserService {
                     String retrievedPassword = rs.getString("password");
 
                     if(retrievedPassword.equals(password)){
-                        SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
                         User u = new User();
                         u.setUser_id(rs.getInt("user_id"));
                         u.setUsername(rs.getString("username"));
                         currentUser = u;
+                        SceneUtils.changeScene(event,"/com/haris/enterlinked/home-page-view.fxml","EnterLinked");
+
 
                     }else {
                         System.out.println("Provided Credentials are incorrect");

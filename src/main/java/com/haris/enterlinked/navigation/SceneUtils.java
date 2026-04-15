@@ -1,6 +1,7 @@
 package com.haris.enterlinked.navigation;
 
 import com.haris.enterlinked.controller.ContentPageController;
+import com.haris.enterlinked.controller.DiscoveryPageController;
 import com.haris.enterlinked.model.Content;
 import com.haris.enterlinked.service.DBUtils;
 import javafx.event.ActionEvent;
@@ -65,6 +66,23 @@ public class SceneUtils {
             ContentPageController controller = loader.getController();
             controller.setContent(content);
             controller.setPreviousFXML(previousFXML);
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.setMaximized(true);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static void changeSceneWithGenre(Node source, String fxmlFile, String title,String genre) {
+        try {
+            FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
+            Parent root = loader.load();
+            DiscoveryPageController controller = loader.getController();
+            controller.setPassedOnGenre(genre);
             Stage stage = (Stage) source.getScene().getWindow();
             stage.setTitle(title);
             stage.setScene(new Scene(root));

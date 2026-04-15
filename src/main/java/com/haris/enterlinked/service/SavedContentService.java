@@ -43,7 +43,7 @@ public class SavedContentService {
     }
 
         public boolean checkSave(int userid, int movieid){
-        String sql = "SELECT 1 FROM saved_content where username_id = ? and movie_id = ? LIMIT 1";
+        String sql = "SELECT 1 FROM saved_content where username_id = ? and content_id = ? LIMIT 1";
         try(Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setInt(1,userid);
             ps.setInt(2,movieid);
