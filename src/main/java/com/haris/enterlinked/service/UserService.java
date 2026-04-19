@@ -117,6 +117,10 @@ public class UserService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Database Error");
+            alert.setContentText(e.getMessage());
+            alert.show();
         }finally {
             if(rs != null){
                 try{
@@ -127,7 +131,7 @@ public class UserService {
             }
             if (preparedStatement !=null){
                 try {
-                    rs.close();
+                    preparedStatement.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

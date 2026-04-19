@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -76,9 +77,18 @@ public class LibraryPageController implements Initializable {
                 row = new HBox(20);
                 libraryContainer.getChildren().add(row);
             }
-            Content movie = savedContentList.get(i);
-            VBox card = ContentCardFactory.create(movie);
-            card.setOnMouseClicked(event -> SceneUtils.changeContent(card, "/com/haris/enterlinked/view-content-page.fxml", "EnterLinked", movie,"/com/haris/enterlinked/library-page-view.fxml"));
+            Content content = savedContentList.get(i);
+            StackPane card = ContentCardFactory.createLibraryCard(content);
+            card.setOnMouseClicked(event -> SceneUtils.changeContent(card, "/com/haris/enterlinked/view-content-page.fxml", "EnterLinked", content,"/com/haris/enterlinked/library-page-view.fxml"));
+            Button removeBtn = (Button) card.lookup(".remove-button");
+            removeBtn.setOnAction(event -> {
+                event.consume();
+                int userId = UserService.getCurrentUser().getUser_id();
+                boolean removed = savedContent.removeSavedContent(userId, content.getId());
+                if (removed) {
+                    loadByCategory();
+                }});
+            removeBtn.setOnMouseClicked(e -> e.consume());
             row.getChildren().add(card);
         }
     }

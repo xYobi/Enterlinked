@@ -108,6 +108,17 @@ public class SavedContentService {
         }
         return movies;
     }
+    public boolean removeSavedContent(int userId, int contentId){
+        String sql = "DELETE FROM saved_content WHERE username_id = ? AND content_id = ?";
+        try(Connection con = DBUtils.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1,userId);
+            ps.setInt(2,contentId);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 

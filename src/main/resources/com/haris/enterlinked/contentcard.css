@@ -10,3 +10,26 @@
     -fx-text-fill: white;
 
 }
+.remove-button {
+    -fx-background-color: #2b2b2b;
+    -fx-text-fill: #d0d0d0;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50%;
+    -fx-border-color: #555555;
+    -fx-border-radius: 50%;
+    -fx-min-width: 28px;
+    -fx-min-height: 28px;
+    -fx-max-width: 28px;
+    -fx-max-height: 28px;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.remove-button:hover {
+    -fx-background-color: #ffe5e5;
+}
+
+.content-card-wrapper {
+    -fx-padding: 4px;
+}

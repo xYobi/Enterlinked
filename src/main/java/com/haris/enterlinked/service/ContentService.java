@@ -37,7 +37,7 @@ public class ContentService {
                 }
                 //   System.out.println(c.getImageUrl());
             } else {
-                c.setImageUrl(getClass().getResource("/com/haris/enterlinked/No_Poster_Found.png").toExternalForm());
+                c.setImageUrl(getClass().getResource("/com/haris/enterlinked/No_Poster_found.png").toExternalForm());
             }
         } catch (Exception e) {
             e.printStackTrace();

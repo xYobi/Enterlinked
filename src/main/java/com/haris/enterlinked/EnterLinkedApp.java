@@ -25,7 +25,7 @@ public class EnterLinkedApp extends Application {
 
 
     public static void main(String[] args) {
-
+        System.setProperty("jdk.internal.httpclient.disableHostnameVerification", "true");
         launch(args);
     }
 }
